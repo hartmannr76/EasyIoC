@@ -1,0 +1,27 @@
+using System;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace EasyIoC.Microsoft {
+    public class ServiceContainer : IServiceContainer {
+        private readonly IServiceCollection _container;
+
+        public ServiceContainer(IServiceCollection container) {
+            _container = container;
+        }
+
+        public void AddRequestScoped(Type interfaceToAdd, Type implementation)
+        {
+            _container.AddScoped(interfaceToAdd, implementation);
+        }
+
+        public void AddSingleton(Type interfaceToAdd, Type implementation)
+        {
+            _container.AddSingleton(interfaceToAdd, implementation);
+        }
+
+        public void AddTransient(Type interfaceToAdd, Type implementation)
+        {
+            _container.AddTransient(interfaceToAdd, implementation);
+        }
+    }
+}

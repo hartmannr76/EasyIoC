@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.0.0
+MinimumVisualStudioVersion = 10.0.0.1
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "EasyIoC", "EasyIoC/EasyIoC.xproj", "{41544D86-7CF6-48DC-9A35-B6F0CC92A961}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "EasyIoC.Microsoft", "EasyIoC.Microsoft\EasyIoC.Microsoft.xproj", "{C742A24F-6030-4C38-B640-B0BD2579B1E5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{41544D86-7CF6-48DC-9A35-B6F0CC92A961}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41544D86-7CF6-48DC-9A35-B6F0CC92A961}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41544D86-7CF6-48DC-9A35-B6F0CC92A961}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41544D86-7CF6-48DC-9A35-B6F0CC92A961}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C742A24F-6030-4C38-B640-B0BD2579B1E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C742A24F-6030-4C38-B640-B0BD2579B1E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C742A24F-6030-4C38-B640-B0BD2579B1E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C742A24F-6030-4C38-B640-B0BD2579B1E5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
