@@ -1,0 +1,8 @@
+language: csharp
+os: linux
+dist: trusty
+dotnet: 1.0.0-preview2-003121
+before_install:
+- dotnet restore
+script:
+- for proj in `ls */project.json`; do dotnet build "$proj"; done
