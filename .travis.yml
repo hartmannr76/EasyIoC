@@ -6,4 +6,7 @@ dotnet: 1.0.0-preview2-003121
 before_install:
 - dotnet restore
 script:
+# Build all projects
 - for proj in `ls */project.json`; do dotnet build "$proj"; done
+# Run necessary tests
+- for proj in `ls *.Tests/project.json`; do dotnet test "$proj"; done
