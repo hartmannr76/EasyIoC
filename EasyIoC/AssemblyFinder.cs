@@ -12,7 +12,7 @@ namespace EasyIoC {
             var ctx = DependencyContext.Default;
             ignoredAssemblies = ignoredAssemblies ?? _defaultIgnoredAssemblies;
             
-            var assemblyNames = from li in ctx.RuntimeLibraries
+            var assemblyNames = from lib in ctx.RuntimeLibraries
                                 from assemblyName in lib.GetDefaultAssemblyNames(ctx)
                                 where ignoredAssemblies.Any(x => assemblyName.Name.StartsWith(x))
                                 select assemblyName;
