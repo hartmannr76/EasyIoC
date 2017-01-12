@@ -7,6 +7,6 @@ before_install:
 - dotnet restore
 script:
 # Build all projects
-- for proj in `ls */project.json`; do dotnet build "$proj"; done
-# Run necessary tests
-- for proj in `ls *.Tests/project.json`; do dotnet test "$proj"; done
+- ./build.sh
+# Pack for nuget
+- ./push-to-nuget.sh
