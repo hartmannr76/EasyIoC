@@ -1,6 +1,6 @@
 set -e
 
-if [ -z "$TRAVIS_TAG" ]; then
+if [ -n "$TRAVIS_TAG" ]; then
    nuget setApiKey $NUGET_API_KEY
 
     # Pack the files for NuGet
@@ -10,6 +10,8 @@ if [ -z "$TRAVIS_TAG" ]; then
         fi;
     done
 
-    # Push to NuGet
-    nuget push ./.nupkg/*.nupkg $NUGET_API_KEY -verbosity detailed
+    for pkg in `ls ./.nupkg/*.nupkg`; do
+        # Push to NuGet
+        nuget push "$pkg" -Verbosity detailed
+    done
 fi

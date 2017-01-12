@@ -3,6 +3,18 @@
   "buildOptions": {
     "debugType": "portable"
   },
+  "packOptions": {
+    "summary": "Simple automatic dependency registration for DI containers",
+    "description": "Simple automatic registration for DI containers",
+    "tags": [ "dependency-injection", "ioc" ],
+    "owners": [ "hartmannr76" ],
+    "projectUrl": "https://github.com/hartmannr76/EasyIoC",
+    "licenseUrl": "https://github.com/hartmannr76/EasyIoC/blob/master/LICENSE",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/hartmannr76/EasyIoC"
+    }
+  },
   "dependencies": {
     "Microsoft.Extensions.DependencyModel": "1.0.0",
     "NETStandard.Library": "1.6.0",
