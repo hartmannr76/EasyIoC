@@ -14,7 +14,7 @@ namespace EasyIoC {
             
             var assemblyNames = from lib in ctx.RuntimeLibraries
                                 from assemblyName in lib.GetDefaultAssemblyNames(ctx)
-                                where ignoredAssemblies.Any(x => assemblyName.Name.StartsWith(x))
+                                where ignoredAssemblies.Any(x => !assemblyName.Name.StartsWith(x))
                                 select assemblyName;
             var lookup = assemblyNames.ToLookup(x => x.Name).Select(x => x.First());
             var asList = lookup.Select(Assembly.Load).ToImmutableList();
