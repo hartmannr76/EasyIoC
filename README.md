@@ -1,4 +1,8 @@
 # EasyIoC
+Travis: ![Travis](https://api.travis-ci.org/hartmannr76/EasyIoC.svg?branch=master)  
+NuGet - EasyIoC: ![EasyIoC](https://img.shields.io/nuget/v/EasyIoC.svg)  
+NuGet - EasyIoC.Microsoft: ![EasyIoC.Microsoft](https://img.shields.io/nuget/v/EasyIoC.Microsoft.svg) 
+
 Inversion of Control (IoC) and Dependency Injection (DI)
 are popular concepts implemented in .NET. So much so, that
 Microsoft even added their own native version of it in .NET core.
