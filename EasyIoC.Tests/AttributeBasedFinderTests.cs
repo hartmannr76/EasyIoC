@@ -57,12 +57,6 @@ namespace EasyIoC.Tests
         }
     }
 
-    [Dependency(Environment = Environments.Development)]
-    public class TestableWithAttributeClassAndOneEnvironment {}
-
-    [Dependency(Environment = Environments.Production)]
-    public class TestableWithAttributeClassAndDifferentEnvironment {}
-
     [Dependency]
     public class TestableWithAttributeClass {}
 

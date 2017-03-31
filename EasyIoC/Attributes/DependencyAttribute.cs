@@ -10,6 +10,5 @@ namespace EasyIoC.Attributes
         }
         
         public DependencyLifetime DependencyLifetime = DependencyLifetime.Transient;
-        public string Environment = Environments.Any;
     }
 }
