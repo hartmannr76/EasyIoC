@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using Microsoft.Extensions.DependencyModel;
 
-namespace EasyIoC {
+namespace EasyIoC.Finders {
     public class AssemblyFinder {
         private readonly HashSet<string> _defaultIgnoredAssemblies = new HashSet<string>() { "Microsoft.", "System." };
 

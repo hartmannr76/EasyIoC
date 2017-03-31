@@ -3,6 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Reflection;
 using EasyIoC.Attributes;
+using EasyIoC.Finders;
 using Moq;
 using NUnit.Framework;
 
@@ -56,7 +57,13 @@ namespace EasyIoC.Tests
         }
     }
 
-    [AutoRegister]
+    [Dependency(Environment = Environments.Development)]
+    public class TestableWithAttributeClassAndOneEnvironment {}
+
+    [Dependency(Environment = Environments.Production)]
+    public class TestableWithAttributeClassAndDifferentEnvironment {}
+
+    [Dependency]
     public class TestableWithAttributeClass {}
 
     public class TestableWithoutAttributeClass {}

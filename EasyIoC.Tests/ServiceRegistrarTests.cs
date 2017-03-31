@@ -19,7 +19,7 @@ namespace EasyIoC.Tests
         [Test]
         public void RegisterTypeForLifetime_GivenSingleton_RegistersCorrectly()
         {
-            _service.RegisterTypeForLifetime(_mockCollection.Object, typeof(TestableClass), ServiceLifetime.Singleton);
+            _service.RegisterTypeForLifetime(_mockCollection.Object, typeof(TestableClass), DependencyLifetime.Singleton);
 
             _mockCollection.Verify(x => x.AddSingleton(typeof(ITestableClass), typeof(TestableClass)), Times.Once);
         }
@@ -27,7 +27,7 @@ namespace EasyIoC.Tests
         [Test]
         public void RegisterTypeForLifetime_GivenTransient_RegistersCorrectly()
         {
-            _service.RegisterTypeForLifetime(_mockCollection.Object, typeof(TestableClass), ServiceLifetime.Transient);
+            _service.RegisterTypeForLifetime(_mockCollection.Object, typeof(TestableClass), DependencyLifetime.Transient);
 
             _mockCollection.Verify(x => x.AddTransient(typeof(ITestableClass), typeof(TestableClass)), Times.Once);
         }
@@ -35,7 +35,7 @@ namespace EasyIoC.Tests
         [Test]
         public void RegisterTypeForLifetime_GivenRequestScoped_RegistersCorrectly()
         {
-            _service.RegisterTypeForLifetime(_mockCollection.Object, typeof(TestableClass), ServiceLifetime.PerRequest);
+            _service.RegisterTypeForLifetime(_mockCollection.Object, typeof(TestableClass), DependencyLifetime.PerRequest);
 
             _mockCollection.Verify(x => x.AddRequestScoped(typeof(ITestableClass), typeof(TestableClass)), Times.Once);
         }

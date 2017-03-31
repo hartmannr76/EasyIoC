@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using EasyIoC.Attributes;
 
-namespace EasyIoC {
+namespace EasyIoC.Finders {
     public class AttributeBasedFinder : IClassFinder
     {
         private readonly ServiceRegistrar _registrar;
@@ -18,16 +18,16 @@ namespace EasyIoC {
             return
                 from assembly in assemblies
                 from type in assembly.DefinedTypes
-                let attr = type.GetCustomAttribute<AutoRegisterAttribute>()
+                let attr = type.GetCustomAttribute<DependencyAttribute>()
                 where attr != null
-                let lifetime = attr.ServiceLifetime
+                let lifetime = attr.DependencyLifetime
                 select type.AsType();
         }
 
         public void RegisterClass(Type type, IServiceContainer container)
         {
-            var attribute = type.GetTypeInfo().GetCustomAttribute<AutoRegisterAttribute>();
-            var lifetime = attribute.ServiceLifetime;
+            var attribute = type.GetTypeInfo().GetCustomAttribute<DependencyAttribute>();
+            var lifetime = attribute.DependencyLifetime;
             _registrar.RegisterTypeForLifetime(container, type, lifetime);
         }
     }

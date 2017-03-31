@@ -1,4 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
+using EasyIoC.Finders;
 
 namespace EasyIoC.Microsoft.Exensions {
     public static class ServiceRegistrationExtensions {

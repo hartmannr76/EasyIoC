@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace EasyIoC {
+namespace EasyIoC.Finders {
     public class InterfaceBasedFinder : IClassFinder {
         public IEnumerable<Type> FindRegisteredClasses(IEnumerable<Assembly> assemblies)
         {

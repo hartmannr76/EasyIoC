@@ -94,7 +94,7 @@ Your `FooBarService` now becomes:
 using EasyIoC;
 using EasyIoC.Attributes;
 
-[AutoRegister(ServiceLifetime.Singleton)]
+[AutoRegister(DependencyLifetime.Singleton)]
 public class FooBarService : IFooBarService {
     public void DoSomething() {
         Console.WriteLine("FooBar");
