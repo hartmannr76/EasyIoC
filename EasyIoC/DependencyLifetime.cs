@@ -1,6 +1,8 @@
+using System;
+
 namespace EasyIoC
 {
-    public enum ServiceLifetime
+    public enum DependencyLifetime
     {
         Transient,
         Singleton,

@@ -50,14 +50,14 @@ collection.AddSingleton(typeof(IFooBarService), typeof(FooBarService));
 And you would have to repeat this process every time that you want
 to add a new service.
 
-## Auto-Registration
+## Dependency Registration
 As a result of the tedious bouncing around to find the `Startup.cs`
 file and adding your shiny new service, many app's will have
 a way of registering it for you. This is that auto-registration
 in a library for whichever DI container library you want to use.
 
 ### Attribute Registration
-One of these patterns for auto-registration of services involve
+One of these patterns for dependency registration of services involve
 adding an attribute to your implementation that allows the system
 to discover which services you want to be added.
 
@@ -94,7 +94,7 @@ Your `FooBarService` now becomes:
 using EasyIoC;
 using EasyIoC.Attributes;
 
-[AutoRegister(ServiceLifetime.Singleton)]
+[Dependency(DependencyLifetime.Singleton)]
 public class FooBarService : IFooBarService {
     public void DoSomething() {
         Console.WriteLine("FooBar");
@@ -132,7 +132,7 @@ using EasyIoC.Microsoft.Extensions;
 ```c#
 using EasyIoC;
 
-public class FooBarService : IAutoRegister {
+public class FooBarService : IDependencyRegisrar {
     public FooBarService() {} // There must be an empty constructor
 
     public void RegisterModules(IServiceContainer container) {
@@ -143,5 +143,5 @@ public class FooBarService : IAutoRegister {
 }
 ```
 
-You can add as many instances of the `IAutoRegister` as you want
+You can add as many instances of the `IDependencyRegisrar` as you want
 if you want your classes to be kept inside your solution.
