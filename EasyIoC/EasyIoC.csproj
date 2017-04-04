@@ -21,6 +21,7 @@
     <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
   </PropertyGroup>
 
+	<Target Name="Build" />
   <!--<Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />-->
 
   <ItemGroup>
