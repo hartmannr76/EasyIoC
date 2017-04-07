@@ -1,13 +1,13 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.0.0
-MinimumVisualStudioVersion = 10.0.0.1
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "EasyIoC", "EasyIoC/EasyIoC.xproj", "{41544D86-7CF6-48DC-9A35-B6F0CC92A961}"
+# Visual Studio 15
+VisualStudioVersion = 15.0.26114.2
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyIoC", "EasyIoC\EasyIoC.csproj", "{41544D86-7CF6-48DC-9A35-B6F0CC92A961}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "EasyIoC.Microsoft", "EasyIoC.Microsoft\EasyIoC.Microsoft.xproj", "{C742A24F-6030-4C38-B640-B0BD2579B1E5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyIoC.Microsoft", "EasyIoC.Microsoft\EasyIoC.Microsoft.csproj", "{C742A24F-6030-4C38-B640-B0BD2579B1E5}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "EasyIoC.Tests", "EasyIoC.Tests\EasyIoC.Tests.xproj", "{5DB4F93C-CD38-473D-AAAF-F62686E5B35C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyIoC.Tests", "EasyIoC.Tests\EasyIoC.Tests.csproj", "{5DB4F93C-CD38-473D-AAAF-F62686E5B35C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
