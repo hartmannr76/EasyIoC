@@ -49,7 +49,7 @@ The `EasyIoC.Microsoft.Extensions` namespace provides an
 extension to `IServiceCollection`. The function `RegisterDependencies`
 accepts an `IClassFinder` that is used to determine how to find
 the classes to register. In this case, we are using an "Attribute"
-finder. To have your implementation class be automatically 
+finder. To have your implementation class be  
 discovered, you simply need to decorate it with the proper
 attribute, and optionally provide a lifetime or environment you wish for it to be registered to it.
 
@@ -124,6 +124,37 @@ You can add as many instances of the `IDependencyRegistrar` as you want
 if you want your classes to be kept inside your solution.
 
 Your `RegisterModules` function will also be given the `environment` you passed upon initialization to allow you to register based on your environmental needs.
+
+### Configuring Dependencies per Environment
+While the service extension is as simple as passing a finder, as documented above, you can also pass in information regarding the environment to register items for.
+
+If you provide a value to the `Environment` parameter, any environment based dependencies will be inspected first. If a dependencies environment matches, it will be registered before any that may not be specific to an environment.
+
+Alternatively, if you do not provide an environment, only implementations that do not have an environment set will be registered.
+
+`Environment` can either be a given string, or something you may want to conditionally determine with delayed invocation.
+
+For now, you can register in one of 3 ways:
+
+
+```c#
+public interface IFooBar {}
+
+[Dependency]
+public class FooBar : IFooBar {}
+
+
+[Dependency(Environment="Dev")]
+public class DevFooBar : IFooBar {}
+
+public void ConfigureServices(IServiceCollection services)
+    {
+        services.RegisterDependencies(new AFinder()); // Will use FooBar
+        services.RegisterDependencies(new AFinder(), "Dev"); // Will use DevFooBar
+        services.RegisterDependencies(new AFinder(), x => return x == "Go" || x == null); // Will use FooBar
+    }
+
+```
 
 ### Supported Container Frameworks
 - [X] Microsoft.DependencyInjection

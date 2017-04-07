@@ -14,7 +14,7 @@ namespace EasyIoC.Microsoft.Exensions {
         public static void RegisterDependencies(
             this IServiceCollection collection,
             IClassFinder classFinder,
-            string Environment = null) {
+            string Environment = "") {
             var assemblyFinder = new AssemblyFinder();
             var assemblies = assemblyFinder.FindAssemblies(null);
 
