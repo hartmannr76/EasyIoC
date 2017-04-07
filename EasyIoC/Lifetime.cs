@@ -2,7 +2,7 @@ using System;
 
 namespace EasyIoC
 {
-    public enum DependencyLifetime
+    public enum Lifetime
     {
         Transient,
         Singleton,

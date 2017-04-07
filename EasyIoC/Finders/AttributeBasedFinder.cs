@@ -20,14 +20,13 @@ namespace EasyIoC.Finders {
                 from type in assembly.DefinedTypes
                 let attr = type.GetCustomAttribute<DependencyAttribute>()
                 where attr != null
-                let lifetime = attr.DependencyLifetime
                 select type.AsType();
         }
 
         public void RegisterClass(Type type, IServiceContainer container)
         {
             var attribute = type.GetTypeInfo().GetCustomAttribute<DependencyAttribute>();
-            var lifetime = attribute.DependencyLifetime;
+            var lifetime = attribute.Lifetime;
             _registrar.RegisterTypeForLifetime(container, type, lifetime);
         }
     }
