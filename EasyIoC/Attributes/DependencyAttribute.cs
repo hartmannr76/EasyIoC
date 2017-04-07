@@ -10,5 +10,6 @@ namespace EasyIoC.Attributes
         }
 
         public Lifetime Lifetime;
+        public string Environment;
     }
 }

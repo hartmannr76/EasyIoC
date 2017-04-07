@@ -23,11 +23,15 @@ namespace EasyIoC.Finders {
                 select type.AsType();
         }
 
-        public void RegisterClass(Type type, IServiceContainer container)
+        public void RegisterClass(Type type, IServiceContainer container, string Environment)
         {
             var attribute = type.GetTypeInfo().GetCustomAttribute<DependencyAttribute>();
             var lifetime = attribute.Lifetime;
-            _registrar.RegisterTypeForLifetime(container, type, lifetime);
+            var environment = attribute.Environment;
+
+            if (Environment == null || environment == Environment) {
+                _registrar.RegisterTypeForLifetime(container, type, lifetime);
+            }
         }
     }
 }

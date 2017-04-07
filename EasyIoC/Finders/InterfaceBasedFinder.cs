@@ -14,10 +14,10 @@ namespace EasyIoC.Finders {
                 select type.AsType();
         }
 
-        public void RegisterClass(Type type, IServiceContainer container)
+        public void RegisterClass(Type type, IServiceContainer container, string Environment)
         {
             var config = (IDependencyRegistrar)Activator.CreateInstance(type);
-            config.RegisterDependencies(container);
+            config.RegisterDependencies(container, Environment);
         }
     }
 }

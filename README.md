@@ -3,6 +3,9 @@ Travis: ![Travis](https://api.travis-ci.org/hartmannr76/EasyIoC.svg?branch=maste
 NuGet - EasyIoC: ![EasyIoC](https://img.shields.io/nuget/v/EasyIoC.svg)  
 NuGet - EasyIoC.Microsoft: ![EasyIoC.Microsoft](https://img.shields.io/nuget/v/EasyIoC.Microsoft.svg) 
 
+Dependency registration abstraction for popular IoC frameworks.
+
+## Why?
 Inversion of Control (IoC) and Dependency Injection (DI)
 are popular concepts implemented in .NET. So much so, that
 Microsoft even added their own native version of it in .NET core.
@@ -18,43 +21,6 @@ wanted a friendly way of using those same concepts for multiple
 projects.
 
 ## Usage
-Today when you want to implement IoC, you typically have 3 things:
-Interface, Implementation, and Service Container. Which may look
-something like the following.
-
-`IFooBarService.cs`:
-```c#
-public interface IFoobarService {
-    void DoSomething();
-}
-```
-
-`FooBarService.cs`:
-```c#
-public class FooBarService : IFooBarService {
-    public void DoSomething() {
-        Console.WriteLine("FooBar");
-    }
-}
-```
-
-`Startup.cs`: *Using .NET native DI*
-```c#
-...
-
-collection.AddSingleton(typeof(IFooBarService), typeof(FooBarService));
-
-...
-```
-
-And you would have to repeat this process every time that you want
-to add a new service.
-
-## Dependency Registration
-As a result of the tedious bouncing around to find the `Startup.cs`
-file and adding your shiny new service, many app's will have
-a way of registering it for you. This is that auto-registration
-in a library for whichever DI container library you want to use.
 
 ### Attribute Registration
 One of these patterns for dependency registration of services involve
@@ -145,3 +111,8 @@ public class FooBarService : IDependencyRegisrar {
 
 You can add as many instances of the `IDependencyRegisrar` as you want
 if you want your classes to be kept inside your solution.
+
+### Supported Container Frameworks
+- [X] Microsoft
+- [ ] Autofac
+- [ ] Ninject

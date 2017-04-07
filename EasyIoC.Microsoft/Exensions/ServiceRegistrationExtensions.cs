@@ -8,7 +8,7 @@ namespace EasyIoC.Microsoft.Exensions {
 		/// </summary>
 		/// <param name="collection">Collection.</param>
 		/// <param name="classFinder">Class finder.</param>
-        public static void RegisterDependencies(this IServiceCollection collection, IClassFinder classFinder) {
+        public static void RegisterDependencies(this IServiceCollection collection, IClassFinder classFinder, string Environment = null) {
             var assemblyFinder = new AssemblyFinder();
             var assemblies = assemblyFinder.FindAssemblies(null);
 
@@ -16,7 +16,7 @@ namespace EasyIoC.Microsoft.Exensions {
             var serviceCollection = new ServiceContainer(collection);
 
             foreach(var item in classesToRegister) {
-                classFinder.RegisterClass(item, serviceCollection);
+                classFinder.RegisterClass(item, serviceCollection, Environment);
             }
         }
     }
