@@ -7,5 +7,5 @@ done
 
 # Run any unit tests we have for these solutions
 for proj in `ls *Tests*/*.csproj`; do
-    dotnet test "$proj";
+    dotnet run -p "$proj" -f netcoreapp1.0;
 done
