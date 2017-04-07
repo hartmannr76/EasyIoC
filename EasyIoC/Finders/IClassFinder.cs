@@ -4,7 +4,7 @@ using System.Reflection;
 
 namespace EasyIoC.Finders {
     public interface IClassFinder {
-        IEnumerable<Type> FindRegisteredClasses(IEnumerable<Assembly> assemblies);
-        void RegisterClass(Type type, IServiceContainer container, string Environment);
+        IEnumerable<Discoverable> FindRegisteredClasses(IEnumerable<Assembly> assemblies);
+        void RegisterClass(Type type, IServiceContainer container, string environment);
     }
 }

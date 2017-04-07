@@ -39,21 +39,21 @@ using EasyIoC.Microsoft.Extensions;
     {
         ...
 
-        services.AutoRegisterServices(new AttributeBasedFinder());
+        services.RegisterDependencies(new AttributeBasedFinder());
         
         ...
     }
 ```
 
 The `EasyIoC.Microsoft.Extensions` namespace provides an
-extension to `IServiceCollection`. The function `AutoRegisterServices`
+extension to `IServiceCollection`. The function `RegisterDependencies`
 accepts an `IClassFinder` that is used to determine how to find
 the classes to register. In this case, we are using an "Attribute"
 finder. To have your implementation class be automatically 
 discovered, you simply need to decorate it with the proper
-attribute, and provide a lifetime to it.
+attribute, and optionally provide a lifetime or environment you wish for it to be registered to it.
 
-Your `FooBarService` now becomes:
+Lets say you need to register an `IFooBarService` that uses `FooBarService` as its implementation:
 
 `FooBarService.cs`:
 ```c#
@@ -66,11 +66,22 @@ public class FooBarService : IFooBarService {
         Console.WriteLine("FooBar");
     }
 }
+
+[Dependency(Lifetime.Singleton, Environment = "Development")]
+public class DevFooBarService : IFooBarService {
+    public void DoSomething() {
+        Console.WriteLine("FooBar");
+    }
+}
 ```
 
 The lifetimes are limited to `Singleton`, `Transient`, and 
 `PerRequest`; which are common lifetime scopes in many DI
 container frameworks.
+
+The `Environment` variable is free text. Upon registration, you can pass in an `Environment` you wish services to be registered for, allowing you to configure what gets used, when; based on the decorator.
+
+In the above example, we want the `DevFooBarService` to be used in "Development" and the other to be used for everything else.
 
 ### Multiple Registering Classes
 Another construct that I've seen is the use of multiple classes
@@ -88,7 +99,7 @@ using EasyIoC.Microsoft.Extensions;
     {
         ...
 
-        services.AutoRegisterServices(new InterfaceBasedFinder());
+        services.RegisterDependencies(new InterfaceBasedFinder());
         
         ...
     }
@@ -101,7 +112,7 @@ using EasyIoC;
 public class FooBarService : IDependencyRegisrar {
     public FooBarService() {} // There must be an empty constructor
 
-    public void RegisterModules(IServiceContainer container) {
+    public void RegisterModules(IServiceContainer container, string environment) {
         container.AddRequestScoped(IFooService, FooService);
         container.AddSingleton(IBarService, BarService);
         container.AddTransientService(IFooBarService, FooBarService);
@@ -109,10 +120,12 @@ public class FooBarService : IDependencyRegisrar {
 }
 ```
 
-You can add as many instances of the `IDependencyRegisrar` as you want
+You can add as many instances of the `IDependencyRegistrar` as you want
 if you want your classes to be kept inside your solution.
 
+Your `RegisterModules` function will also be given the `environment` you passed upon initialization to allow you to register based on your environmental needs.
+
 ### Supported Container Frameworks
-- [X] Microsoft
+- [X] Microsoft.DependencyInjection
 - [ ] Autofac
 - [ ] Ninject

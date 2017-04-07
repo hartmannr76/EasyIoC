@@ -14,22 +14,36 @@ namespace EasyIoC.Finders {
             _registrar = new ServiceRegistrar();
         }
 
-        public IEnumerable<Type> FindRegisteredClasses(IEnumerable<Assembly> assemblies) {
-            return
-                from assembly in assemblies
+        public IEnumerable<Discoverable> FindRegisteredClasses(IEnumerable<Assembly> assemblies) {
+            var allAttributedClasses = from assembly in assemblies
                 from type in assembly.DefinedTypes
                 let attr = type.GetCustomAttribute<DependencyAttribute>()
                 where attr != null
-                select type.AsType();
+                select new Discoverable { Type = type.AsType(), Environment = attr.Environment };
+            
+            // Returns environment based implementations first
+            foreach (var foundClass in allAttributedClasses) {
+				if (foundClass.Environment != null) {
+					yield return foundClass;
+                }
+            }
+
+            // Returns implementations that can be registered for any environment.
+            // If there is an environment specific one, the "any" version will be ignored
+            foreach (var foundClass in allAttributedClasses) {
+				if (foundClass.Environment == null) {
+					yield return foundClass;
+                }
+            }
         }
 
-        public void RegisterClass(Type type, IServiceContainer container, string Environment)
+        public void RegisterClass(Type type, IServiceContainer container, string environment)
         {
             var attribute = type.GetTypeInfo().GetCustomAttribute<DependencyAttribute>();
             var lifetime = attribute.Lifetime;
-            var environment = attribute.Environment;
+            var attrEnvironment = attribute.Environment;
 
-            if (Environment == null || environment == Environment) {
+            if (environment == null || attrEnvironment == environment) {
                 _registrar.RegisterTypeForLifetime(container, type, lifetime);
             }
         }
