@@ -4,22 +4,20 @@ using NUnit.Framework;
 namespace EasyIoC.Tests
 {
     [TestFixture]
-    public class ServiceRegistrarTests
+    public class RegistrationHelperTests
     {
-        private ServiceRegistrar _service;
         private Mock<IServiceContainer> _mockCollection;
 
         [SetUp]
         public void Setup()
         {
-            _service = new ServiceRegistrar();
             _mockCollection = new Mock<IServiceContainer>();
         }
 
         [Test]
         public void RegisterTypeForLifetime_GivenSingleton_RegistersCorrectly()
         {
-            _service.RegisterTypeForLifetime(_mockCollection.Object, typeof(TestableClass), Lifetime.Singleton);
+            RegistrationHelper.RegisterTypeForLifetime(_mockCollection.Object, typeof(TestableClass), Lifetime.Singleton);
 
             _mockCollection.Verify(x => x.AddSingleton(typeof(ITestableClass), typeof(TestableClass)), Times.Once);
         }
@@ -27,7 +25,7 @@ namespace EasyIoC.Tests
         [Test]
         public void RegisterTypeForLifetime_GivenTransient_RegistersCorrectly()
         {
-            _service.RegisterTypeForLifetime(_mockCollection.Object, typeof(TestableClass), Lifetime.Transient);
+            RegistrationHelper.RegisterTypeForLifetime(_mockCollection.Object, typeof(TestableClass), Lifetime.Transient);
 
             _mockCollection.Verify(x => x.AddTransient(typeof(ITestableClass), typeof(TestableClass)), Times.Once);
         }
@@ -35,7 +33,7 @@ namespace EasyIoC.Tests
         [Test]
         public void RegisterTypeForLifetime_GivenRequestScoped_RegistersCorrectly()
         {
-            _service.RegisterTypeForLifetime(_mockCollection.Object, typeof(TestableClass), Lifetime.PerRequest);
+            RegistrationHelper.RegisterTypeForLifetime(_mockCollection.Object, typeof(TestableClass), Lifetime.PerRequest);
 
             _mockCollection.Verify(x => x.AddRequestScoped(typeof(ITestableClass), typeof(TestableClass)), Times.Once);
         }

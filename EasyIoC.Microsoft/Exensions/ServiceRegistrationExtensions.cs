@@ -14,12 +14,25 @@ namespace EasyIoC.Microsoft.Exensions {
         public static void RegisterDependencies(
             this IServiceCollection collection,
             IClassFinder classFinder,
-            string Environment = "") {
+            string Environment = null) {
             var assemblyFinder = new AssemblyFinder();
             var assemblies = assemblyFinder.FindAssemblies(null);
 
             var classesToRegister = classFinder.FindRegisteredClasses(assemblies);
             var serviceCollection = new ServiceContainer(collection);
+
+            List<Discoverable> environmentBasedClasses = new List<Discoverable>();
+
+            // Pushing onto this list gives us a way to use the non-environment
+            // based classes first, if none was specified
+            foreach(var item in classesToRegister) {
+                if (Environment == null && item.Environment != null){
+                    environmentBasedClasses.Add(item);
+                }
+                else {
+                    classFinder.RegisterClass(item.Type, serviceCollection, Environment);
+                }
+            }
 
             foreach(var item in classesToRegister) {
                 classFinder.RegisterClass(item.Type, serviceCollection, Environment);

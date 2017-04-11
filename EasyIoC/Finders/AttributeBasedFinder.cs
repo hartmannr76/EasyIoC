@@ -7,13 +7,6 @@ using EasyIoC.Attributes;
 namespace EasyIoC.Finders {
     public class AttributeBasedFinder : IClassFinder
     {
-        private readonly ServiceRegistrar _registrar;
-
-        public AttributeBasedFinder()
-        {
-            _registrar = new ServiceRegistrar();
-        }
-
         public IEnumerable<Discoverable> FindRegisteredClasses(IEnumerable<Assembly> assemblies) {
             var allAttributedClasses = from assembly in assemblies
                 from type in assembly.DefinedTypes
@@ -44,7 +37,7 @@ namespace EasyIoC.Finders {
             var attrEnvironment = attribute.Environment;
 
             if (environment == null || attrEnvironment == environment) {
-                _registrar.RegisterTypeForLifetime(container, type, lifetime);
+                RegistrationHelper.RegisterTypeForLifetime(container, type, lifetime);
             }
         }
     }

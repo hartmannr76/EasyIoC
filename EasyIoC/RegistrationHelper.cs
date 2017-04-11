@@ -3,8 +3,8 @@ using System.Linq;
 using System.Reflection;
 
 namespace EasyIoC {
-    public class ServiceRegistrar {
-        public void RegisterTypeForLifetime(IServiceContainer collection, Type type, Lifetime lifetime) {
+    public static class RegistrationHelper {
+        public static void RegisterTypeForLifetime(IServiceContainer collection, Type type, Lifetime lifetime) {
             var iface = type.GetInterfaces().FirstOrDefault();
 
             if(lifetime == Lifetime.Singleton) {
