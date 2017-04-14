@@ -2,6 +2,6 @@
 {
     public interface IDependencyRegistrar
     {
-        void RegisterDependencies(IServiceContainer container);
+        void RegisterDependencies(IServiceContainer container, string Environment);
     }
 }

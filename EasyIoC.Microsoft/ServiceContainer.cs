@@ -11,17 +11,28 @@ namespace EasyIoC.Microsoft {
 
         public void AddRequestScoped(Type interfaceToAdd, Type implementation)
         {
-            _container.AddScoped(interfaceToAdd, implementation);
+			if (!_container.Contains(
+				new ServiceDescriptor(interfaceToAdd, implementation, ServiceLifetime.Scoped))) {
+				_container.AddScoped(interfaceToAdd, implementation);
+			}
         }
 
         public void AddSingleton(Type interfaceToAdd, Type implementation)
         {
-            _container.AddSingleton(interfaceToAdd, implementation);
+			if (!_container.Contains(
+				new ServiceDescriptor(interfaceToAdd, implementation, ServiceLifetime.Singleton)))
+			{
+				_container.AddSingleton(interfaceToAdd, implementation);
+			}
         }
 
         public void AddTransient(Type interfaceToAdd, Type implementation)
-        {
-            _container.AddTransient(interfaceToAdd, implementation);
+		{
+			if (!_container.Contains(
+				new ServiceDescriptor(interfaceToAdd, implementation, ServiceLifetime.Transient)))
+			{
+				_container.AddTransient(interfaceToAdd, implementation);
+			}
         }
     }
 }
